@@ -721,6 +721,8 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
   color: #cfcfd6;
   transition: border-color .15s, color .15s;
 }
+.world-concept:hover { border-color: var(--lime); color: var(--lime); }
+
 /* ============ 05 剧情档案 ============ */
 
 .panel-story {
