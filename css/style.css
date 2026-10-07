@@ -154,6 +154,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
   font-size: 15px;
   font-weight: 700;
   color: #cfcfd6;
+  white-space: nowrap;
   transition: color .15s;
 }
 .nav-link::after {
@@ -823,6 +824,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 /* ============ 响应式 ============ */
 
 @media (max-width: 1080px) {
+  .main-nav { display: none; }
   .video-layout, .news-layout, .feature-layout { grid-template-columns: 1fr; }
   .char-display { flex-direction: column; }
   .char-frame { flex-basis: auto; max-width: 420px; }
