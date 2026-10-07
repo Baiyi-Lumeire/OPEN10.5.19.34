@@ -282,8 +282,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
   font-style: italic;
   letter-spacing: 2px;
   color: transparent;
-  -webkit-text-stroke: 1.5px currentColor;
-  opacity: .55;
+  -webkit-text-stroke: 1.5px rgba(255,255,255,.55);
 }
 .panel-light .section-title span { -webkit-text-stroke-color: var(--ink); }
 .head-num {
@@ -491,6 +490,12 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
   transition: filter .2s, outline-color .2s, transform .2s;
 }
 .char-strip li:hover { filter: grayscale(0) brightness(.95); }
+.char-strip li:focus-visible,
+.thumb-grid li:focus-visible,
+.news-dots button:focus-visible {
+  outline: 3px solid var(--lime);
+  outline-offset: 2px;
+}
 .char-strip li.is-active {
   outline-color: var(--lime);
   filter: none;
