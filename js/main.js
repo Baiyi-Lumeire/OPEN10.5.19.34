@@ -24,7 +24,7 @@
   sections[0].classList.add("is-inview");
 
   /* ---------- 页码/导航高亮 + 页码器反色：滚动位置驱动 ---------- */
-  var lightIds = ["s01", "s04", "s07"];
+  var lightIds = ["s01", "s04", "s08"];
 
   function currentIndex() {
     var idx = 0;
@@ -130,6 +130,24 @@
       faction: "深夜电台 · FM23:47",
       name: "夜莺 NIGHTINGALE",
       desc: "只闻其声的黑台 DJ，每晚 23:47 用老歌给迷路的信使指路。商会的追查队搜过三十七次电台大楼，一无所获。"
+    },
+    {
+      img: "assets/img/char9.webp",
+      faction: "环礁一中 · ATOLL HIGH",
+      name: "杏子 XINGZI",
+      desc: "白天是学生会的风纪股长，晚上是面馆特快最年轻的见习信使。课本里夹着里城的送货地图，校服第二颗扣子其实是求助信标。"
+    },
+    {
+      img: "assets/img/char10.webp",
+      faction: "玄牝观 · XUANPIN TEMPLE",
+      name: "清源 QINGYUAN",
+      desc: "里城唯一的驱邪师，坚持认为裂隙是个风水问题。桃木剑鞘里装的其实是量隙尺——他说那是改良过的罗盘，没人敢反驳。"
+    },
+    {
+      img: "assets/img/char11.webp",
+      faction: "旧世残骸 · RELIC SERIES",
+      name: "薇拉 VERA",
+      desc: "大崩解前的「军姬」系列指挥型机体，身高一米五却坚持自称少将。睡醒了就找部下，找到的旧世残骸都被她安排去送外卖。"
     }
   ];
 

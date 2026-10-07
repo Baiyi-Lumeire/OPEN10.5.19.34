@@ -475,13 +475,20 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 
 .char-strip {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
   margin-top: 38px;
   padding-left: 6vw;
+  padding-bottom: 12px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lime) #222228;
 }
+.char-strip::-webkit-scrollbar { height: 5px; }
+.char-strip::-webkit-scrollbar-track { background: #222228; }
+.char-strip::-webkit-scrollbar-thumb { background: var(--lime); }
 .char-strip li {
   position: relative;
+  flex: none;
   width: clamp(96px, 9vw, 140px);
   aspect-ratio: 1;
   cursor: pointer;
@@ -661,7 +668,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 .news-list a:hover { color: #4a5400; }
 .news-list time { flex: none; font-size: 12px; color: #88888e; font-family: var(--font-disp); font-style: italic; }
 
-/* ============ 05 设定档案 ============ */
+/* ============ 06 设定档案 ============ */
 
 .panel-world {
   display: flex;
@@ -927,6 +934,74 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 }
 
 
+/* ============ 07 城市掠影 ============ */
+
+.panel-citylife {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(211,242,39,.06), transparent 50%),
+    radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.4px) 0 0 / 10px 10px,
+    linear-gradient(150deg, #15151b 0%, #0f0f13 100%);
+}
+
+.citylife-wrap { position: relative; z-index: 2; }
+.citylife-note {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 22px;
+  letter-spacing: 1px;
+}
+.citylife-strip {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--lime) #222228;
+}
+.citylife-strip::-webkit-scrollbar { height: 6px; }
+.citylife-strip::-webkit-scrollbar-track { background: #222228; }
+.citylife-strip::-webkit-scrollbar-thumb { background: var(--lime); }
+.citylife-card {
+  position: relative;
+  flex: 0 0 clamp(300px, 30vw, 430px);
+  aspect-ratio: 16 / 10;
+  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+  outline: 4px solid #000;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+.citylife-card:nth-child(even) { clip-path: polygon(0 0, 93% 0, 100% 100%, 7% 100%); }
+.citylife-card img { transition: transform .35s ease; }
+.citylife-card:hover img { transform: scale(1.05); }
+.citylife-txt {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 16px 18px;
+  background: linear-gradient(transparent, rgba(0,0,0,.9));
+}
+.citylife-txt b {
+  font-family: var(--font-disp);
+  font-weight: 900;
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: var(--lime);
+}
+.citylife-txt p { font-size: 12px; color: #d4d4da; margin-top: 4px; }
+.citylife-hint {
+  display: block;
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+}
+
+/* ============ 08 游戏特色 ============ */
+
 .panel-feature {
   display: flex;
   flex-direction: column;
@@ -1011,6 +1086,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 .panel .story-layout,
 .panel .chronicle,
 .panel .world-layout,
+.panel .citylife-wrap,
 .panel .feature-layout,
 .panel .hero-stage,
 .panel .hero-meta {
@@ -1026,6 +1102,7 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
 .panel.is-inview .story-layout,
 .panel.is-inview .chronicle,
 .panel.is-inview .world-layout,
+.panel.is-inview .citylife-wrap,
 .panel.is-inview .feature-layout,
 .panel.is-inview .hero-stage,
 .panel.is-inview .hero-meta {
