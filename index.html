@@ -24,8 +24,9 @@
       <a href="#s02" class="nav-link">角色介绍</a>
       <a href="#s03" class="nav-link">影像资料</a>
       <a href="#s04" class="nav-link">新闻资讯</a>
-      <a href="#s05" class="nav-link">设定档案</a>
-      <a href="#s06" class="nav-link">游戏特色</a>
+      <a href="#s05" class="nav-link">剧情档案</a>
+      <a href="#s06" class="nav-link">设定档案</a>
+      <a href="#s07" class="nav-link">游戏特色</a>
     </nav>
   </div>
   <div class="header-right">
@@ -52,6 +53,7 @@
     <li><a href="#s04">04</a></li>
     <li><a href="#s05">05</a></li>
     <li><a href="#s06">06</a></li>
+    <li><a href="#s07">07</a></li>
   </ul>
   <button class="pager-arrow" id="pagerDown" aria-label="下一屏">
     <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 19 4 10h16l-8 9Z"/></svg>
@@ -131,6 +133,10 @@
         <li data-idx="1" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：隼人"><img src="assets/img/char2.webp" alt="隼人"><span>HAYATO</span></li>
         <li data-idx="2" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：小町"><img src="assets/img/char3.webp" alt="小町"><span>KOMACHI</span></li>
         <li data-idx="3" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：铁卫"><img src="assets/img/char4.webp" alt="铁卫"><span>T-9</span></li>
+        <li data-idx="4" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：白苇"><img src="assets/img/char5.webp" alt="白苇"><span>BAIWEI</span></li>
+        <li data-idx="5" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：墨博士"><img src="assets/img/char6.webp" alt="墨博士"><span>DR.MO</span></li>
+        <li data-idx="6" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：阿炭"><img src="assets/img/char7.webp" alt="阿炭"><span>TAN</span></li>
+        <li data-idx="7" tabindex="0" role="button" aria-pressed="false" aria-label="查看角色：夜莺"><img src="assets/img/char8.webp" alt="夜莺"><span>NIGHTINGALE</span></li>
       </ul>
     </div>
   </section>
@@ -196,40 +202,99 @@
     </div>
   </section>
 
-  <!-- ======================= 05 设定档案 ======================= -->
-  <section class="panel panel-dark panel-world" id="s05" data-title="设定档案">
+  <!-- ======================= 05 剧情档案 ======================= -->
+  <section class="panel panel-dark panel-story" id="s05" data-title="剧情档案">
     <header class="section-head">
-      <h2 class="section-title"><em>设定档案</em><span>Background</span></h2>
+      <h2 class="section-title"><em>剧情档案</em><span>Story</span></h2>
       <i class="head-num">05</i>
     </header>
 
-    <div class="world-layout">
-      <ul class="world-cards">
-        <li class="world-card">
-          <img src="assets/img/thumb-city.webp" alt="环礁市">
-          <div class="world-card-txt"><b>环礁市 ATOLL CITY</b><p>霓虹彻夜不熄的最后一座完整都市。</p></div>
+    <div class="story-layout">
+      <div class="story-feature">
+        <div class="story-frame"><img id="storyImg" src="assets/img/ep0.webp" alt="章节配图"></div>
+        <p class="story-meta"><span id="storyEp">序章 PROLOGUE</span><b id="storyTitle">坠落的第一晚</b></p>
+        <p class="story-desc" id="storyDesc">2031 年，裂隙初现之夜。高架区在十九分钟内断电失联，巡查队只来得及拉下最后一道路障。当夜之后，环礁市人学会的第一件事是：不要仰头看天空太久。</p>
+      </div>
+      <ul class="story-list" id="storyList">
+        <li class="is-active" data-ep="0" tabindex="0" role="button" aria-pressed="true" aria-label="阅读：序章·坠落的第一晚">
+          <i>00</i>
+          <div><b>序章 · 坠落的第一晚</b><p>裂隙撕开夜空，高架区一夜失联</p></div>
         </li>
-        <li class="world-card">
-          <img src="assets/img/thumb-battle.webp" alt="裂隙">
-          <div class="world-card-txt"><b>裂隙 THE RIFT</b><p>撕开城市夜空的青色伤口，吞没街区。</p></div>
+        <li data-ep="1" tabindex="0" role="button" aria-pressed="false" aria-label="阅读：第一章·面馆不收现金">
+          <i>01</i>
+          <div><b>第一章 · 面馆不收现金</b><p>一碗送去里城的热拉面，报酬是个谜</p></div>
         </li>
-        <li class="world-card">
-          <img src="assets/img/thumb-cafe.webp" alt="信使">
-          <div class="world-card-txt"><b>信使 COURIERS</b><p>穿行表里两层城市的自由职业者。</p></div>
+        <li data-ep="2" tabindex="0" role="button" aria-pressed="false" aria-label="阅读：第二章·白名单之夜">
+          <i>02</i>
+          <div><b>第二章 · 白名单之夜</b><p>宵禁令下，全城信使一夜被通缉</p></div>
+        </li>
+        <li data-ep="3" tabindex="0" role="button" aria-pressed="false" aria-label="阅读：第三章·收音机里的女声">
+          <i>03</i>
+          <div><b>第三章 · 收音机里的女声</b><p>23:47 的深夜电台，拼出裂隙之心的坐标</p></div>
         </li>
       </ul>
-      <a class="world-concept" href="#s05">
+    </div>
+
+    <div class="chronicle">
+      <h3 class="chronicle-title">编年史 <span>CHRONICLE</span></h3>
+      <ol class="chronicle-list">
+        <li><b>2031</b><span>大崩解——裂隙第一次撕开夜空，城北化为禁区</span></li>
+        <li><b>2032</b><span>高架区封锁，高架巡查队成立</span></li>
+        <li><b>2033</b><span>霓虹商会接管全城电力</span></li>
+        <li><b>2035</b><span>「信使」行当兴起，表里城之间走私网成形</span></li>
+        <li><b>2038</b><span>现在——旧地铁深处，裂隙之心开始搏动</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ======================= 06 设定档案 ======================= -->
+  <section class="panel panel-dark panel-world" id="s06" data-title="设定档案">
+    <header class="section-head">
+      <h2 class="section-title"><em>设定档案</em><span>Background</span></h2>
+      <i class="head-num">06</i>
+    </header>
+
+    <div class="world-layout">
+      <div class="world-group">
+        <h3 class="world-sub">地点 <span>LOCATIONS</span></h3>
+        <ul class="world-cards">
+          <li class="world-card">
+            <img src="assets/img/thumb-city.webp" alt="环礁市">
+            <div class="world-card-txt"><b>环礁市 ATOLL CITY</b><p>霓虹彻夜不熄的最后一座完整都市。电力由霓虹商会垄断，灯下越亮的地方，它的规矩越多。</p></div>
+          </li>
+          <li class="world-card">
+            <img src="assets/img/ep1.webp" alt="里城">
+            <div class="world-card-txt"><b>里城 UNDERCITY</b><p>裂隙吞掉的街区形成的镜像废墟。没有法律，只有还亮着的那盏面馆灯笼。</p></div>
+          </li>
+          <li class="world-card">
+            <img src="assets/img/ep3.webp" alt="旧地铁">
+            <div class="world-card-txt"><b>旧地铁 OLD METRO</b><p>大崩解前废弃的隧道网。最深处的站台里嵌着一颗仍在搏动的绿色晶体。</p></div>
+          </li>
+        </ul>
+      </div>
+      <div class="world-group">
+        <h3 class="world-sub">势力 <span>FACTIONS</span></h3>
+        <ul class="faction-list">
+          <li><b>机修同盟 <i>GEAR UNION</i></b><p>底层机械师互助公会，里城维修点的实际经营者。</p></li>
+          <li><b>高架巡查队 <i>OVERPASS WATCH</i></b><p>半官方封锁巡逻队，握着表城唯一的武装通行权。</p></li>
+          <li><b>面馆特快 <i>NOODLE EXPRESS</i></b><p>深夜面馆掩护下的情报与快递网络，送餐必达。</p></li>
+          <li><b>旧世残骸 <i>RELIC SERIES</i></b><p>大崩解前遗留的战斗机器，散落各处靠打零工「还债」。</p></li>
+          <li><b>霓虹商会 <i>NEON GUILD</i></b><p>接管全城电力的财团，宵禁令与电价都由它说了算。</p></li>
+          <li><b>裂隙研究所 <i>RIFT INSTITUTE</i></b><p>官方研究机构，宣称在「治愈天空」——没人见过它的实验体。</p></li>
+        </ul>
+      </div>
+      <a class="world-concept" href="#s06">
         <span>概念站 · 回顾</span>
         <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M5 11h11.2l-4.6-4.6L13 5l7 7-7 7-1.4-1.4 4.6-4.6H5v-2Z"/></svg>
       </a>
     </div>
   </section>
 
-  <!-- ======================= 06 游戏特色 ======================= -->
-  <section class="panel panel-light panel-feature" id="s06" data-title="游戏特色">
+  <!-- ======================= 07 游戏特色 ======================= -->
+  <section class="panel panel-light panel-feature" id="s07" data-title="游戏特色">
     <header class="section-head">
       <h2 class="section-title"><em>游戏特色</em><span>Feature</span></h2>
-      <i class="head-num">06</i>
+      <i class="head-num">07</i>
     </header>
 
     <div class="feature-layout">

@@ -24,7 +24,7 @@
   sections[0].classList.add("is-inview");
 
   /* ---------- 页码/导航高亮 + 页码器反色：滚动位置驱动 ---------- */
-  var lightIds = ["s01", "s04", "s06"];
+  var lightIds = ["s01", "s04", "s07"];
 
   function currentIndex() {
     var idx = 0;
@@ -106,6 +106,30 @@
       faction: "旧世残骸 · RELIC SERIES",
       name: "铁卫 T-9",
       desc: "从废铁场里自己爬出来的老式战斗机器人，如今在面馆后厨打工还债。围巾是它唯一的私人物品。"
+    },
+    {
+      img: "assets/img/char5.webp",
+      faction: "霓虹商会 · NEON GUILD",
+      name: "白苇 BAIWEI",
+      desc: "商会会长的独女与指定继承人，正在下一盘无人能看懂的棋。她开出的每份合同里，都藏着一枚写给未来的楔子。"
+    },
+    {
+      img: "assets/img/char6.webp",
+      faction: "裂隙研究所 · RIFT INSTITUTE",
+      name: "墨博士 DR. MO",
+      desc: "裂隙创伤学唯一的研究者，也是研究所里唯一敢在报告上写真话的人。他的白大褂口袋里装着三份没交上去的辞职信。"
+    },
+    {
+      img: "assets/img/char7.webp",
+      faction: "面馆特快 · NOODLE EXPRESS",
+      name: "阿炭 TAN",
+      desc: "最年轻的注册信使，里城的墙面上全是他的涂鸦标记——看不懂的人以为是艺术，看得懂的人当它是路标。"
+    },
+    {
+      img: "assets/img/char8.webp",
+      faction: "深夜电台 · FM23:47",
+      name: "夜莺 NIGHTINGALE",
+      desc: "只闻其声的黑台 DJ，每晚 23:47 用老歌给迷路的信使指路。商会的追查队搜过三十七次电台大楼，一无所获。"
     }
   ];
 
@@ -182,6 +206,55 @@
       head: "09/30/2026　黄金周签到活动开启"
     }
   ];
+
+  /* ---------- 剧情章节切换 ---------- */
+  var STORY = [
+    {
+      img: "assets/img/ep0.webp",
+      ep: "序章 PROLOGUE",
+      title: "坠落的第一晚",
+      desc: "2031 年，裂隙初现之夜。高架区在十九分钟内断电失联，巡查队只来得及拉下最后一道路障。当夜之后，环礁市人学会的第一件事是：不要仰头看天空太久。"
+    },
+    {
+      img: "assets/img/ep1.webp",
+      ep: "第一章 CHAPTER 1",
+      title: "面馆不收现金",
+      desc: "深夜面馆的老板娘小町给琪拉派了个奇怪的委托：把一碗还热着的拉面送进里城。报酬不是钱，而是「一个你还没问过的问题的答案」。"
+    },
+    {
+      img: "assets/img/ep2.webp",
+      ep: "第二章 CHAPTER 2",
+      title: "白名单之夜",
+      desc: "霓虹商会宣布全城宵禁，信使一夜之间上了通缉名单。隼人在封锁线前放了琪拉过去——代价是他保管了三年的那枚徽章。"
+    },
+    {
+      img: "assets/img/ep3.webp",
+      ep: "第三章 CHAPTER 3",
+      title: "收音机里的女声",
+      desc: "每晚 23:47，里城的收音机都会收到同一个频率。夜莺用点播的老歌拼出一串坐标，指向旧地铁深处——在那里，裂隙之心第一次跳动。"
+    }
+  ];
+
+  var storyImg = document.getElementById("storyImg");
+  var storyEp = document.getElementById("storyEp");
+  var storyTitle = document.getElementById("storyTitle");
+  var storyDesc = document.getElementById("storyDesc");
+  var storyList = document.getElementById("storyList");
+  enableKeyboardActivation(storyList);
+
+  storyList.addEventListener("click", function (e) {
+    var li = e.target.closest("li");
+    if (!li) return;
+    var s = STORY[Number(li.dataset.ep)];
+    storyList.querySelectorAll("li").forEach(function (x) {
+      x.classList.toggle("is-active", x === li);
+      x.setAttribute("aria-pressed", x === li ? "true" : "false");
+    });
+    storyImg.src = s.img;
+    storyEp.textContent = s.ep;
+    storyTitle.textContent = s.title;
+    storyDesc.textContent = s.desc;
+  });
 
   var newsImg = document.getElementById("newsImg");
   var newsLine = document.getElementById("newsLine");
