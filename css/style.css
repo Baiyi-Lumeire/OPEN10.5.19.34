@@ -961,6 +961,12 @@ button { font-family: inherit; border: 0; background: none; cursor: pointer; col
   padding-bottom: 16px;
   scrollbar-width: thin;
   scrollbar-color: var(--lime) #222228;
+  user-select: none;
+  cursor: grab;
+}
+.citylife-strip.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
 }
 .citylife-strip::-webkit-scrollbar { height: 6px; }
 .citylife-strip::-webkit-scrollbar-track { background: #222228; }

@@ -70,6 +70,30 @@
     if (e.key === "PageUp" || (e.key === "ArrowUp" && e.altKey)) { e.preventDefault(); go(-1); }
   });
 
+  /* ---------- 画廊鼠标拖动滚动 ---------- */
+  var lifeStrip = document.getElementById("citylifeStrip");
+  if (lifeStrip) {
+    var dragX = 0, dragLeft = 0, dragging = false;
+    lifeStrip.addEventListener("pointerdown", function (e) {
+      dragging = true;
+      dragX = e.clientX;
+      dragLeft = lifeStrip.scrollLeft;
+      lifeStrip.setPointerCapture(e.pointerId);
+      lifeStrip.classList.add("is-dragging");
+    });
+    lifeStrip.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      lifeStrip.scrollLeft = dragLeft - (e.clientX - dragX);
+    });
+    ["pointerup", "pointercancel", "pointerleave"].forEach(function (ev) {
+      lifeStrip.addEventListener(ev, function () {
+        dragging = false;
+        lifeStrip.classList.remove("is-dragging");
+      });
+    });
+    lifeStrip.addEventListener("dragstart", function (e) { e.preventDefault(); });
+  }
+
   /* ---------- 列表项键盘激活（Enter/Space） ---------- */
   function enableKeyboardActivation(container) {
     container.addEventListener("keydown", function (e) {
