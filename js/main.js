@@ -18,7 +18,7 @@
         }
       });
     },
-    { threshold: 0.12 }
+    { threshold: 0 }
   );
   sections.forEach(function (s) { revealObserver.observe(s); });
   sections[0].classList.add("is-inview");
@@ -66,8 +66,8 @@
   document.getElementById("pagerUp").addEventListener("click", function () { go(-1); });
   document.getElementById("pagerDown").addEventListener("click", function () { go(1); });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "PageDown") { e.preventDefault(); go(1); }
-    if (e.key === "PageUp") { e.preventDefault(); go(-1); }
+    if (e.key === "PageDown" || (e.key === "ArrowDown" && e.altKey)) { e.preventDefault(); go(1); }
+    if (e.key === "PageUp" || (e.key === "ArrowUp" && e.altKey)) { e.preventDefault(); go(-1); }
   });
 
   /* ---------- 列表项键盘激活（Enter/Space） ---------- */
