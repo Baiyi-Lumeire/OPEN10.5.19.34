@@ -8,33 +8,24 @@
   var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
   var pager = document.querySelector(".pager");
 
-  /* ---------- 分节观察：页码高亮 + 入场动画 + 页码器反色 ---------- */
-  var lightIds = ["s01", "s04", "s06"];
-
-  var observer = new IntersectionObserver(
+  /* ---------- 入场动画：低阈值观察，分节再高也能触发 ---------- */
+  var revealObserver = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        el.classList.add("is-inview");
-        var idx = sections.indexOf(el);
-        if (idx === -1) return;
-
-        pagerItems.forEach(function (li, i) {
-          li.classList.toggle("is-active", i === idx);
-        });
-        navLinks.forEach(function (a, i) {
-          a.classList.toggle("is-active", i === idx);
-        });
-        pager.classList.toggle("on-light", lightIds.indexOf(el.id) !== -1);
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-inview");
+          revealObserver.unobserve(entry.target);
+        }
       });
     },
-    { threshold: 0.45 }
+    { threshold: 0.12 }
   );
-  sections.forEach(function (s) { observer.observe(s); });
+  sections.forEach(function (s) { revealObserver.observe(s); });
   sections[0].classList.add("is-inview");
 
-  /* ---------- 页码器上下箭头 ---------- */
+  /* ---------- 页码/导航高亮 + 页码器反色：滚动位置驱动 ---------- */
+  var lightIds = ["s01", "s04", "s06"];
+
   function currentIndex() {
     var idx = 0;
     var mid = window.scrollY + window.innerHeight / 2;
@@ -43,6 +34,31 @@
     });
     return idx;
   }
+
+  function syncActive() {
+    var idx = currentIndex();
+    var el = sections[idx];
+    pagerItems.forEach(function (li, i) {
+      li.classList.toggle("is-active", i === idx);
+    });
+    navLinks.forEach(function (a, i) {
+      a.classList.toggle("is-active", i === idx);
+    });
+    pager.classList.toggle("on-light", lightIds.indexOf(el.id) !== -1);
+  }
+
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      syncActive();
+      ticking = false;
+    });
+  }, { passive: true });
+  syncActive();
+
+  /* ---------- 页码器上下箭头 ---------- */
   function go(delta) {
     var next = Math.min(Math.max(currentIndex() + delta, 0), sections.length - 1);
     sections[next].scrollIntoView({ behavior: "smooth" });
@@ -50,9 +66,20 @@
   document.getElementById("pagerUp").addEventListener("click", function () { go(-1); });
   document.getElementById("pagerDown").addEventListener("click", function () { go(1); });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "PageDown" || e.key === "ArrowDown" && e.altKey) { e.preventDefault(); go(1); }
-    if (e.key === "PageUp" || e.key === "ArrowUp" && e.altKey) { e.preventDefault(); go(-1); }
+    if (e.key === "PageDown") { e.preventDefault(); go(1); }
+    if (e.key === "PageUp") { e.preventDefault(); go(-1); }
   });
+
+  /* ---------- 列表项键盘激活（Enter/Space） ---------- */
+  function enableKeyboardActivation(container) {
+    container.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var li = e.target.closest("li");
+      if (!li) return;
+      e.preventDefault();
+      li.click();
+    });
+  }
 
   /* ---------- 角色切换 ---------- */
   var CHARS = [
@@ -87,6 +114,7 @@
   var charFaction = document.getElementById("charFaction");
   var charDesc = document.getElementById("charDesc");
   var charStrip = document.getElementById("charStrip");
+  enableKeyboardActivation(charStrip);
 
   charStrip.addEventListener("click", function (e) {
     var li = e.target.closest("li");
@@ -95,6 +123,7 @@
     var c = CHARS[i];
     charStrip.querySelectorAll("li").forEach(function (x) {
       x.classList.toggle("is-active", x === li);
+      x.setAttribute("aria-pressed", x === li ? "true" : "false");
     });
     charImg.style.opacity = 0;
     setTimeout(function () {
@@ -120,6 +149,7 @@
   var videoTag = document.getElementById("videoTag");
   var videoTitle = document.getElementById("videoTitle");
   var thumbGrid = document.getElementById("thumbGrid");
+  enableKeyboardActivation(thumbGrid);
 
   thumbGrid.addEventListener("click", function (e) {
     var li = e.target.closest("li");
@@ -127,6 +157,7 @@
     var v = VIDS[Number(li.dataset.vid)];
     thumbGrid.querySelectorAll("li").forEach(function (x) {
       x.classList.toggle("is-active", x === li);
+      x.setAttribute("aria-pressed", x === li ? "true" : "false");
     });
     videoImg.src = v.img;
     videoTag.textContent = v.tag;
@@ -163,6 +194,7 @@
     var n = NEWS[Number(btn.dataset.news)];
     newsDots.querySelectorAll("button").forEach(function (b) {
       b.classList.toggle("is-active", b === btn);
+      b.setAttribute("aria-pressed", b === btn ? "true" : "false");
     });
     newsImg.src = n.img;
     newsLine.textContent = n.line;
